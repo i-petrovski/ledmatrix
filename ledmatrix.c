@@ -33,54 +33,22 @@ void pointtest (void)
 int main(void)
 {
   setup();
-  uint8_t letter_L[] = {5, 8,
-    0b11000,
-    0b11000,
-    0b11000,
-    0b11000,
-    0b11000,
-    0b11000,
-    0b11111,
-    0b11111
-  };
-  
-  uint8_t letter_E[] = {5, 8,
-    0b11111,
-    0b11111,
-    0b11000,
-    0b11110,
-    0b11110,
-    0b11000,
-    0b11111,
-    0b11111
-  };
 
-  uint8_t letter_D[] = {6, 8,
-    0b111100,
-    0b111110,
-    0b110111,
-    0b110011,
-    0b110011,
-    0b110111,
-    0b111110,
-    0b111100
-  };
-
-  uint8_t letter_S[] = {5, 8,
-    0b01110,
-    0b11111,
-    0b11000,
-    0b11110,
-    0b01111,
-    0b00011,
-    0b11111,
-    0b01110
-  };
+  spritewrite(0,letter_C);
+  spritewrite(6,letter_L);
+  spritewrite(12,letter_O);
+  spritewrite(19,letter_U);
+  spritewrite(26,letter_D);
   
-  spritewrite(0,letter_L);
-  spritewrite(6,letter_E);
-  spritewrite(12,letter_D);
-  spritewrite(19,letter_S);
+  /*
+  while(1)
+  {  
+    spritewrite(0 + movex,letter_C);
+    _delay_ms(1000);
+    clearScreen();
+    movex++;
+  }
+  */
 
   //pointtest();
   //regTest(0xff);

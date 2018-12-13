@@ -173,7 +173,7 @@ void setup(void)
   // initialize registers
   clearScreen();                      // clear display
   setScanLimit(0x07);                 // use all rows/digits 1:0x00 - 8:0x07
-  setBrightness(0x0F);                // maximum brightness 0x00 - 0x0F (290ma for 104led max power)
+  setBrightness(0x0A);                // maximum brightness 0x00 - 0x0F (290ma for 104led max power)
   setRegister(REG_SHUTDOWN, 0x01);    // normal operation Disabled:0x00 
   setRegister(REG_DECODEMODE, 0x00);  // no decode 0x00 0x00-0xFF
   setRegister(REG_DISPLAYTEST, 0x00); // not in test mode

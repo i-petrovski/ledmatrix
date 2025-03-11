@@ -33,22 +33,32 @@ void pointtest (void)
 int main(void)
 {
   setup();
-
+  
+  /*
   spritewrite(0,letter_C);
   spritewrite(6,letter_L);
   spritewrite(12,letter_O);
   spritewrite(19,letter_U);
   spritewrite(26,letter_D);
+  */
   
-  /*
-  while(1)
+  uint8_t movex;
+  movex = 0;
+  while(200)
   {  
     spritewrite(0 + movex,letter_C);
-    _delay_ms(1000);
+    spritewrite(6 + movex,letter_L);
+    spritewrite(12 + movex,letter_O);
+    spritewrite(19 + movex,letter_U);
+    spritewrite(26 + movex,letter_D);
+    _delay_ms(100);
     clearScreen();
     movex++;
+    if (movex > 32) {
+      movex = 0;
+    }
   }
-  */
+  
 
   //pointtest();
   //regTest(0xff);

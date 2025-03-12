@@ -1,3 +1,5 @@
+// define chip for avr/io.h
+#define __AVR_ATmega32U4__
 #include <avr/io.h>
 #include <util/delay.h>
 

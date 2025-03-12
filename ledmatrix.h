@@ -1,3 +1,6 @@
+#include <avr/io.h>
+#include <util/delay.h>
+
 // Load Pin high and low 
 #define clockLow  PORTB &= ~(1 << 1)
 #define clockHigh PORTB |= (1 << 1)
@@ -26,9 +29,6 @@
 #define REG_SCANLIMIT   0x0B
 #define REG_SHUTDOWN    0x0C
 #define REG_DISPLAYTEST 0x0F
-
-#include <avr/io.h>
-#include <util/delay.h>
 
 //uint8_t _buffer [7] = {0};
 uint8_t _buffer [0];

@@ -11,3 +11,14 @@
 
 - Comile code:
 make program
+
+# Compile in MACOS
+
+- Install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+- Add the AVR tap
+brew tap osx-cross/avr
+
+- Install the toolchain
+brew install avr-gcc

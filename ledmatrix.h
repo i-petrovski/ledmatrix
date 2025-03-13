@@ -32,6 +32,13 @@
 #define REG_SHUTDOWN    0x0C
 #define REG_DISPLAYTEST 0x0F
 
+// Config Pints for Buttons
+#define BUTTON_PIN_F0 PF0  // Input button on Pin F0
+#define OUTPUT_PIN_F1 PF1  // Output on Pin F1
+#define BUTTON_PIN_F4 PF4  // Input button on Pin F2
+#define OUTPUT_PIN_F5 PF5  // Output on Pin F3
+
+
 //uint8_t _buffer [7] = {0};
 uint8_t _buffer [0];
 
@@ -161,6 +168,40 @@ void write(uint8_t x, uint8_t y, uint8_t value)
   syncRow(y);
 }
 
+uint8_t read(uint8_t x, uint8_t y)
+{
+  if (x >= _maximumX || y >= 8) return 0;
+  uint8_t offset = x;
+  x %= 8;
+  offset -= x;
+
+  if (x == 0)
+  {
+    x = 8;
+  }
+  --x;
+
+  return (_buffer[y + offset] & (0x01 << x)) ? 1 : 0;
+}
+
+// Set up pins for the 2 Buttons
+void button_setup (void)
+{
+  // Button 1
+  DDRF &= ~(1 << BUTTON_PIN_F0);  // Set F0 as input
+  PORTF |= (1 << BUTTON_PIN_F0);  // Enable pull-up resistor
+
+  DDRF |= (1 << OUTPUT_PIN_F1);   // Set F1 as output
+  PORTF &= ~(1 << OUTPUT_PIN_F1); // Ensure output starts LOW
+
+  // Button 2
+  DDRF &= ~(1 << BUTTON_PIN_F4);  // Set F0 as input
+  PORTF |= (1 << BUTTON_PIN_F4);  // Enable pull-up resistor
+  
+  DDRF |= (1 << OUTPUT_PIN_F5);   // Set F1 as output
+  PORTF &= ~(1 << OUTPUT_PIN_F5); // Ensure output starts LOW
+}
+
 void setup(void)
 {
   // B1=Clock B2=DIN B3=Load Date
@@ -175,7 +216,7 @@ void setup(void)
   // initialize registers
   clearScreen();                      // clear display
   setScanLimit(0x07);                 // use all rows/digits 1:0x00 - 8:0x07
-  setBrightness(0x0A);                // maximum brightness 0x00 - 0x0F (290ma for 104led max power)
+  setBrightness(0x0F);                // maximum brightness 0x00 - 0x0F (290ma for 104led max power)
   setRegister(REG_SHUTDOWN, 0x01);    // normal operation Disabled:0x00 
   setRegister(REG_DECODEMODE, 0x00);  // no decode 0x00 0x00-0xFF
   setRegister(REG_DISPLAYTEST, 0x00); // not in test mode
